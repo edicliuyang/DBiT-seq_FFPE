@@ -1,5 +1,5 @@
-# Spatial_FFPE
-This repository aims to share the R codes used in Spatial_FFPE project.
+# DBiT-seq_FFPE
+This repository aims to share the R codes used in DBiT-seq_FFPE project.
 <img src="https://github.com/edicliuyang/Spatial_FFPE/blob/master/scheme.png">
 
 DBiT-seq was a spatial multiomic sequencing technique that can also be used for FFPE sample sequencing. 
