@@ -10,31 +10,27 @@ library(grid)
 library(wesanderson)
 library(dplyr)
 
-dir <- "C:/Users/EDIC-THINKPAD/Desktop/FFPEs/FFPE-2"  
+# set the expression matrix containing folder as the working directory
+dir <- "/FFPEs/FFPE-2"  
 setwd(dir)
 
-##read in the coordinates of points lying on top of the tissue.position.txt is generated from matlab script "Segmentation_Thredsholding.m". 
+##read in the coordinates of points lying on top of the tissue.position.txt is generated from matlab script "Pixel_identification.m". 
 location <- read.table("position.txt", sep =",", header = FALSE, dec =".", stringsAsFactors = F)
 x <- as.character(location[1,])
 x = x[-1]
 
-##read expression matrix
+##read expression matrix and generate the Filtered_matrix.tsv, which contains only the useful pixels
 my_data <- read.table(file = 'FFPE-2_exp_matrix.tsv', sep = '\t', header = TRUE, stringsAsFactors=FALSE)
 data_filtered <- my_data[my_data$X %in% x,]
 write.table(data_filtered, file = 'Filtered_matrix.tsv', sep = '\t',col.names=TRUE, row.names = FALSE,quote = FALSE)
 
-
-#data_filtered <- my_data
-##remove genes has less than 10 expression
+##calculate the total UMI count and Gene count
 count <- rowSums(data_filtered[,2:ncol(data_filtered)])
 data_filtered_binary <- data_filtered[,2:ncol(data_filtered)] %>% mutate_all(as.logical)
 gene_count <- rowSums(data_filtered_binary)
 
-
-#log_count <- log(count)
-
-##UMI Count
-region <- 2500  #change the x axis maxium
+##UMI Count 
+region <- 2500  #change the x axis maxium, need to adjust based on different sample
 test <- data_filtered %>% separate(X, c("A", "B"),  sep = "x")
 df <- data.frame(number=1, c=count)
 pdf(file = paste("UMI.pdf",sep =""), width=8.6, height=8.6)
@@ -58,7 +54,7 @@ dev.off()
 
 ##Gene Count
 df <- data.frame(number=1, c=gene_count)
-region = 1500 #change the x axis maxium
+region = 1500 #change the x axis maxium, need to adjust based on different sample
 pdf(file = paste("Gene.pdf",sep =""), width=8.6, height=8.6)
 ggplot(df,aes(x=c),color='blue', xlab="Gene") + 
   geom_histogram(aes(y=..density..),binwidth=region/20, color="black", fill="white",size=1)+ 
@@ -78,18 +74,17 @@ ggplot(df,aes(x=c),color='blue', xlab="Gene") +
         axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'))
 dev.off()
 
-#imported_raster=OpenImageR::readImage("ventricle.jpg")
+#imported_raster=OpenImageR::readImage("ventricle.jpg")     #if you want the microscope image under the heatmap, then uncomment this line.
 g <- rasterGrob(imported_raster, width=unit(1,"npc"), height=unit(1,"npc"), interpolate = FALSE)
-#Get the plot information so the image will fill the plot box, and draw it
 
-#UMI heatmap
+#UMI heatmap, adjust the limits for scale_color_gradientn, select the limit to be close to the maximum number.
 pdf(file = paste("UMI_heatmap.pdf",sep =""), width=8.6, height=8.6)
 ggplot(test, aes(x = as.numeric(A), y = as.numeric(B), color=count)) +
   #scale_color_gradientn(colours = c("black", "green")) + 
   scale_color_gradientn(colours = c("blue","green", "red"),limits=c(0,1000),
                         oob = scales::squish) +
   ggtitle("UMI") +
-  #annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf) +
+  #annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf) +  #if you want the microscope image under the heatmap, then uncomment this line.
   guides(colour = guide_colourbar(barwidth = 1, barheight = 30)) +
   geom_point(shape = 15, size = 3)+
   expand_limits(x = 0, y = 0) +
@@ -106,14 +101,13 @@ ggplot(test, aes(x = as.numeric(A), y = as.numeric(B), color=count)) +
         panel.background = element_blank())
 dev.off()
 
-#Gene heatmap
+#Gene heatmap, adjust the limits for scale_color_gradientn, select the limit to be close to the maximum number.
 pdf(file = paste("Gene_heatmap.pdf",sep =""), width=8.6, height=8.6)
 ggplot(test, aes(x = as.numeric(A), y = as.numeric(B), color=gene_count)) +
-  #scale_color_gradientn(colours = c("black", "green")) + 
   scale_color_gradientn(colours = c("blue","green", "red"),limits=c(0,1000),
                         oob = scales::squish) +
   ggtitle("Gene") +
-  #annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf) +
+  #annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf) +  #if you want the microscope image under the heatmap, then uncomment this line.
   guides(colour = guide_colourbar(barwidth = 1, barheight = 30)) +
   geom_point(shape = 15, size = 3)+
   expand_limits(x = 0, y = 0) +

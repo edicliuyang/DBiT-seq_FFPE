@@ -105,7 +105,7 @@ There two steps:
 To run the Matlab script "Pixel_identification.m"
 1. Use Photoshop or other photo editing software to crop the microscope image into exactly the size of the DBiT-seq covering area. For example, the upperleft of the image should be the 1x1 pixel of DBiT-seq, and the lowerright is the 50x50. No space is allowed. See "FFPE-2.jpg" for example.
 
-<img src="https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/FFPE-2.jpg">
+<img src="https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/FFPE-2.jpg" width="300">
 
 2. Use threashold function under Image->adjustment menu to adjust the image, so that your tissue is black and background is compeletely white. 
 3. Invert the color of the image. The final image is like "FFPE-2_BW.jpg" in the Example_Data folder.
@@ -120,6 +120,10 @@ To run the Matlab script "Pixel_identification.m"
 The data visualization were completed with R language. The package used extensively the functions in Seurat V3.0 and ggplot2. 
 
 Basically, scripts include:
+
+1. Total_transcripts and Gene_count.R
+	--It generate the Filtered_matrix.tsv, and plot the spatial heatmap of genes and UMIs.
+	
 
 ### 1. Total gene and UMI heatmap
 
