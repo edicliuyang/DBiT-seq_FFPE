@@ -125,8 +125,10 @@ Basically, scripts include:
 	--It generate the Filtered_matrix.tsv, and plot the spatial heatmap of genes and UMIs.
 	
 <embed src="https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf" width="500" />
-[embed]https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf
-
+[UMI.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf)
+[Gene.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene.pdf)
+[UMI_heatmap.pdf] (https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI_heatmap.pdf)
+[Gene_heatmap.pdf] (https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene_heatmap.pdf)
 ### 1. Total gene and UMI heatmap
 
 
