@@ -1,5 +1,9 @@
 # DBiT-seq_FFPE
-This repository aims to share the raw data processing and visualization codes used in DBiT-seq_FFPE project.
+This repository aims to share the raw data processing and visualization codes used in DBiT-seq_FFPE project. 
+
+This repository includes the main R scripts used for the visualization of the sequencing data, including clustering, Differential expression gene analysis and cell annotation with reference scRNA-seq data. 
+
+One MATLAB script to automatic identify pixels on tissue was also included.
 
 <img src="https://github.com/edicliuyang/Spatial_FFPE/blob/master/scheme.png">
 
@@ -39,7 +43,7 @@ The reformated data was processed following [ST pipeline](https://github.com/Spa
 **Run ST pipeline**
 
 Run st_pipeline.sh to start the ST pipeline:
-The input is processed_R2.fastq.gz and Raw R1.fastq.gz. It also requires a "spatial_barcodes_index.txt" to decode the spatial location information. References and annotatation files were aslo needed. 
+The input is processed_R2.fastq.gz and Raw R1.fastq.gz. It also requires a "spatial_barcodes_index.txt" to decode the spatial location information. Genome references and annotatation files were aslo needed. 
 
 ```
 #!/bin/bash
@@ -91,7 +95,6 @@ Then, Run converttoname.sh to annotate the resulting FFPE2_stdata.tsv.
 ```
 tsv_E=FFPE-2_stdata.tsv
 path_to_annotation_file=PATH_TO_ALIGNEMNT/Dropseq_Alignment_References/mm10/mm10.gtf
-
 convertEnsemblToNames.py $tsv_E --annotation $path_to_annotation_file --output FFPE-2_exp_matrix.tsv
 ```
 Now, the expression matrix is successfully generated. The row names are "XxY" location for each pixel, and columne names are Genes. 
@@ -121,29 +124,27 @@ The data visualization were completed with R language. The package used extensiv
 
 Basically, scripts include:
 
-1. Total_transcripts and Gene_count.R
-	--It generate the Filtered_matrix.tsv, and plot the spatial heatmap of genes and UMIs.
+**1. Total_transcripts and Gene_count.R**
 	
-<embed src="https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf" width="500" />
+	--It generate the Filtered_matrix.tsv, makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
+	
 [UMI.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf)
+
 [Gene.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene.pdf)
+
 [UMI_heatmap.pdf] (https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI_heatmap.pdf)
+
 [Gene_heatmap.pdf] (https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene_heatmap.pdf)
-### 1. Total gene and UMI heatmap
 
 
-
-### 2. Clustering with Seurat V3.2 
+**2. Clustering with Seurat V3.2**
+ 
 
 ### 3. Intergration with scRNA-seq data 
 
 
 
-For data preprocessing and generation of expression matrix from raw data, please refer to https://github.com/MingyuYang-Yale/DBiT-seq
 
-This repository includes the main R scripts used for the visualization of the sequencing data, including clustering, Differential expression gene analysis and cell annotation with reference scRNA-seq data. 
-
-One MATLAB script to automatic identify pixels on tissue was also included.
 
 
 
