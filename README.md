@@ -126,19 +126,23 @@ Basically, scripts include:
 
 **1. Total_transcripts and Gene_count.R**
 	
-	--It generate the Filtered_matrix.tsv, makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
+This R script generates the Filtered_matrix.tsv (expression matrix with useful pixels only), makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
 	
 [UMI.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf)
 
 [Gene.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene.pdf)
 
-[UMI_heatmap.pdf] (https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI_heatmap.pdf)
+[UMI_heatmap.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI_heatmap.pdf)
 
-[Gene_heatmap.pdf] (https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene_heatmap.pdf)
+[Gene_heatmap.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/Gene_heatmap.pdf)
 
 
-**2. Clustering with Seurat V3.2**
+**2. Clustering.R**
  
+This R script clusters the pixels using Seurat Package, with SCTransform performed for all pixels. 
+It will generate the spatial cluster map, and also the UMAP plot. 
+See examples below:
+
 
 ### 3. Intergration with scRNA-seq data 
 
