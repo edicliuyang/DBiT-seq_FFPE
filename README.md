@@ -126,7 +126,11 @@ Basically, scripts include:
 
 **1. Total_transcripts and Gene_count.R**
 	
+<<<<<<< Updated upstream
 This R script generates the Filtered_matrix.tsv (expression matrix with useful pixels only), makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
+=======
+It generate the Filtered_matrix.tsv, makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
+>>>>>>> Stashed changes
 	
 [UMI.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf)
 
