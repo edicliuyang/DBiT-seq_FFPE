@@ -17,12 +17,12 @@ library(grid)
 library(wesanderson)
 
 dir <- "C:/Users/EDIC-THINKPAD/Desktop/FFPEs/FFPE-2"  
-setwd("C:/Users/EDIC-THINKPAD/Desktop/FFPEs/FFPE-2")
+setwd(dir)
 
 #Load the Filtered_matrix.tsv, which contains only the useful pixels
 data1 <- read.table("Filtered_matrix.tsv", header = TRUE, sep = "\t", row.names = 1)
 data2 <- t(data1)
-sample1.name <- "atrium"
+sample1.name <- "ffpe2"
 matrix1.data <- Matrix(as.matrix(data2), sparse = TRUE)
 
 #Create Seurate object 
@@ -47,7 +47,7 @@ test <- df1 %>% separate(X, c("A", "B"),  sep = "x")
 #Plot the spatial clusters
 imported_raster=OpenImageR::readImage("FFPE-2.jpg")
 g <- rasterGrob(imported_raster, width=unit(1,"npc"), height=unit(1,"npc"), interpolate = FALSE)
-pdf(file = paste("clustering_10_08_nobackground.pdf",sep =""), width=8.6, height=8.6)
+pdf(file = paste("clusters.pdf",sep =""), width=8.6, height=8.6)
 ggplot(test, aes(x = as.numeric(A), y = as.numeric(B), color=count)) +
   #scale_color_gradientn(colours = c("black", "green")) + 
   #scale_color_gradientn(colours = c("blue","green", "red"),

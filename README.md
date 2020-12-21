@@ -93,6 +93,8 @@ st_pipeline_run.py \
 
 Then, Run converttoname.sh to annotate the resulting FFPE2_stdata.tsv.
 ```
+#!/bin/bash
+
 tsv_E=FFPE-2_stdata.tsv
 path_to_annotation_file=PATH_TO_ALIGNEMNT/Dropseq_Alignment_References/mm10/mm10.gtf
 convertEnsemblToNames.py $tsv_E --annotation $path_to_annotation_file --output FFPE-2_exp_matrix.tsv
@@ -122,15 +124,13 @@ To run the Matlab script "Pixel_identification.m"
 
 The data visualization were completed with R language. The package used extensively the functions in Seurat V3.0 and ggplot2. 
 
-Basically, scripts include:
+Common data visualization scripts include:
 
 **1. Total_transcripts and Gene_count.R**
 	
 <<<<<<< Updated upstream
-This R script generates the Filtered_matrix.tsv (expression matrix with useful pixels only), makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
-=======
-It generate the Filtered_matrix.tsv, makes the distribution plot and the spatial heatmap of genes and UMIs. See below:
->>>>>>> Stashed changes
+This R script generates the Filtered_matrix.tsv (expression matrix with useful pixels only), makes the count per pixel distribution plot (UMI.pdf and Gene.pdf) and the spatial heatmap of genes and UMIs(UMI_heatmap.pdf and Gene_heatmap.pdf). See below:
+See below:
 	
 [UMI.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMI.pdf)
 
@@ -144,8 +144,12 @@ It generate the Filtered_matrix.tsv, makes the distribution plot and the spatial
 **2. Clustering.R**
  
 This R script clusters the pixels using Seurat Package, with SCTransform performed for all pixels. 
-It will generate the spatial cluster map, and also the UMAP plot. 
+It will generate the spatial cluster map (clusters.pdf), and also the UMAP plot (on the Rstudio UI). 
 See examples below:
+
+[clusters.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/clusters.pdf)
+
+[UMAP_clusters.pdf](https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/UMAP_clusters.pdf)
 
 
 ### 3. Intergration with scRNA-seq data 
