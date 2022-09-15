@@ -104,7 +104,7 @@ Now, the expression matrix is successfully generated. The row names are "XxY" lo
 
 ### 2. Identify useful pixels (pixel on tissue) from microscope image using Matlab
 
-Useful pixels were generated from the Matlab script. Basically, it divide the real tissue microscope image into 50x50 small sqaures which match with DBiT-seq pixels. Then, the intensity inside each pixel was calculated and only pixels have signals above a threashold will be selected.
+Useful pixels were generated from the Matlab script. Basically, it divides the real tissue microscope image into 50x50 small sqaures which match with DBiT-seq pixels. The intensity inside each pixel was calculated and only pixels have signals above a threashold will be selected.
 
 There two steps:
 To run the Matlab script "Pixel_identification.m"
@@ -117,18 +117,17 @@ To run the Matlab script "Pixel_identification.m"
 
 <img src="https://github.com/edicliuyang/DBiT-seq_FFPE/blob/master/Example_Data/FFPE-2_BW.jpg" width="500">
 
-4. Run the matlab script and a postion.txt file will be generated, which contains only the useful pixels.
+4. Run the matlab script and a "postion.txt" file will be generated, which contains only the useful pixels.
 
 
 ## Data visualization
 
-The data visualization were completed with R language. The package used extensively the functions in Seurat V3.0 and ggplot2. 
+The data visualization was completed with R language. The package used extensively the functions in Seurat V3.0 and ggplot2. 
 
 Common data visualization scripts include:
 
 **1. Total_transcripts and Gene_count.R**
 	
-<<<<<<< Updated upstream
 This R script generates the Filtered_matrix.tsv (expression matrix with useful pixels only), makes the count per pixel distribution plot (UMI.pdf and Gene.pdf) and the spatial heatmap of genes and UMIs(UMI_heatmap.pdf and Gene_heatmap.pdf). See below:
 See below:
 	
